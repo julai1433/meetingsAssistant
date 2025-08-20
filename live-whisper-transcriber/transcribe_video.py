@@ -17,10 +17,11 @@ def extract_audio_from_video(video_path, output_wav_path):
 
 def main():
     if len(sys.argv) < 2:
-        print("❌ Usage: python transcribe_video.py <video_file>")
+        print("❌ Usage: python transcribe_video.py <video_file_path>")
         return
 
     video_file = sys.argv[1]
+
     if not os.path.exists(video_file):
         print(f"❌ File not found: {video_file}")
         return
@@ -39,7 +40,7 @@ def main():
     )
     os.remove(wav_path)
 
-    # Save to text file
+    # Save transcription in the same directory as the video file
     output_txt = os.path.splitext(video_file)[0] + ".txt"
     with open(output_txt, "w", encoding="utf-8") as f:
         for seg in segments:
